@@ -22,11 +22,14 @@ def progress_bar(progress):
 
 
 def clean_list(path):
-    file_list = [f for f in os.listdir(path) if os.path.isfile(os.path.join(path, f))]
+    # Remove unwanted files from source folder
+    file_list = [f for f in os.listdir(path)  # Removes directories 
+                if os.path.isfile(os.path.join(path, f))]
     bad_files = ['desktop.ini',
                 os.path.basename(__file__)]
     for junk in bad_files:
-        file_list.remove(junk)
+        if junk in file_list:
+            file_list.remove(junk)
     return file_list
 
 
