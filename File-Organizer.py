@@ -21,10 +21,18 @@ def progress_bar(progress):
     sys.stdout.flush()
 
 
+def clean_list(path):
+    file_list = [f for f in os.listdir(path) if os.path.isfile(os.path.join(path, f))]
+    bad_files = ['desktop.ini',
+                os.path.basename(__file__)]
+    for junk in bad_files:
+        file_list.remove(junk)
+    return file_list
+
+
 # Set variables
-src_dir = 'C:\\Users\\avi\\Dropbox\\VR Photos\\Images'#(os.path.dirname(os.path.realpath(__file__)))  # + '\\Sample'
-file_list = [f for f in os.listdir(src_dir) if os.path.isfile(os.path.join(src_dir, f))]
-print(file_list)
+src_dir = os.path.dirname(os.path.realpath(__file__))
+file_list = clean_list(src_dir)
 delim = input('Enter a delimiter character: ')
 posn_help() # Displays list of possible posn choices
 posn = int(input('Enter index number for folder name: '))
@@ -40,10 +48,12 @@ for file in file_list:
     if not os.path.exists(dst_dir):
         os.makedirs(dst_dir)
         dir_count += 1
-    # os.rename(os.path.join(src_dir, file), os.path.join(dst_dir, file))
+    os.rename(os.path.join(src_dir, file), os.path.join(dst_dir, file))
     file_count += 1
     progress_bar((file_count)/len(file_list))
 
 # Print results
 print('\nNew Directories Created: ' + str(dir_count))
 print('Files Moved:             ' + str(file_count))
+
+input('Press enter to exit')
