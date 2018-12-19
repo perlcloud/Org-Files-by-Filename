@@ -27,6 +27,7 @@ def clean_list(path):
                 if os.path.isfile(os.path.join(path, f))]
     bad_files = ['desktop.ini',
                 os.path.basename(__file__)]
+                # TODO: Ignore hidden files & self when compiled 
     for junk in bad_files:
         if junk in file_list:
             file_list.remove(junk)
