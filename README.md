@@ -1,5 +1,6 @@
 # Organize Files By Filename
 ###### Organize files into folders by extracting part of the filename to be used as the folder name.
+This script was written to reorganize large volumes of product photos into individual product folders based on the product ID extracted from the filename.
 
 ## Use
 #### Path
